@@ -56,6 +56,14 @@ functions:
           path: /bmis
           authorizer: ${self:custom.authorizer}
 
+  deleteBMI:
+    handler: src/handlers/deleteBMI.handler
+    events:
+      - http:
+          method: DELETE
+          path: /bmi/{id}
+          authorizer: ${self:custom.authorizer}
+
 custom:
   authorizer: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:auth-service-${self:provider.stage}-auth
   BMITable:
